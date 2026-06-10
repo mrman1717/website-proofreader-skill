@@ -2,7 +2,7 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.1.2
+  version: 1.2.0
   date: 2026-06-10
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
@@ -52,7 +52,18 @@ Before analysing, ask (use tappable options if an option-presenting tool is avai
 - **Standard** — basics + keyword usage and readability
 - **Full audit** — standard + content structure, image alt text, AI-search visibility
 
+**Question 4 — Report level and detail** (defaults apply if the user doesn't choose; don't press for an answer):
+- **Report level:** errors only / errors + warnings / **full** (errors, warnings, and general comments) — default: full
+- **Explanation detail:** **verbose** (full explanations, as in the templates below) / token saver (one short line per issue, no elaboration) — default: verbose
+
 If a target keyword or topic is needed for SEO checks and hasn't been given, ask for it (or infer it from the content and state your assumption).
+
+**Severity tiers** (used by the report level setting):
+- **Error** — objectively wrong: misspellings, US spellings, grammar mistakes, broken/placeholder links, missing required SEO elements (e.g. no title tag, no H1)
+- **Warning** — very likely should change: AI-ism patterns, inconsistencies (spelling variants, capitalisation, dash style, link formats), weak/duplicate SEO elements, readability problems
+- **General comment** — style observations and optional improvements: tone suggestions, structure ideas, things worth a human judgement call
+
+Issues below the chosen report level are not listed individually; if any were suppressed, end the report with a one-line note (e.g. "4 general comments suppressed — rerun at full level to see them").
 
 ### Step 3: Get the content
 
@@ -121,6 +132,8 @@ For multi-page jobs, run the passes per page, and also note site-wide patterns (
 ```
 
 Omit sections for passes that weren't run (e.g. no SEO section in proofreader-only mode).
+
+Within each section, mark each issue's severity (error / warning / general comment) and include only severities at or above the chosen report level. In token-saver mode, compress each entry to a single short line — "[snippet]" → "[fix]" (rule) — and trim the summary to one sentence; in verbose mode follow the templates as written. Polished copy always applies fixes for all severities regardless of report level — the level only filters what's listed in the change log/report.
 
 For multi-page jobs, deliver in the format chosen in Step 3 (combined report organised by page, or per-page outputs plus a site-wide summary of recurring issues).
 

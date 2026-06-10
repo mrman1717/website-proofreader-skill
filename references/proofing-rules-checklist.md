@@ -24,6 +24,7 @@ Flag and correct all US spellings, including:
 - Full stops omitted in abbreviations: Mr, Dr, eg/e.g. per tone file
 - "While" not "whilst" unless the tone file says otherwise (whilst reads dated)
 - £ before figures, no space (£50)
+- **En dashes (–):** normal British English usage — ranges (10–20), connectors (London–Paris), modifiers (post–Second World War), and spaced en dashes as parenthetical dashes — is correct and is **not** an issue. Flag as an error only when genuinely wrong (e.g. a hyphen where a range/connector needs an en dash, or mixed dash styles within the same document — the mixing is the inconsistency error). Otherwise, mention dash usage only as a general comment, and only if there's something genuinely worth noting. The user can override this and ask for all en dash use to be reported as errors.
 
 ## 3. Grammar
 
@@ -50,6 +51,7 @@ Flag and correct all US spellings, including:
 - Missing or duplicated headings; heading text that doesn't match the section content
 - Phone numbers, emails, addresses formatted consistently
 - Trademark/brand names spelt as the owner spells them (e.g. WordPress, iPhone, LinkedIn)
+- Visible URL consistency: all either include or omit "www", and all either include or omit trailing slashes — flag mixed styles as an inconsistency (applies to URLs shown in the copy and link destinations where visible)
 
 ## 6. Clarity and concision
 

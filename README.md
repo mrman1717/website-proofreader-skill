@@ -11,6 +11,8 @@ Proofreads website content in three passes:
 - **Mode:** proofreader only / SEO checker only / both
 - **Output format:** polished copy + change log, or an annotated report (no rewrite)
 - **SEO depth:** basics / standard / full audit
+- **Report level:** errors only / errors + warnings / full (+ general comments) — defaults to full
+- **Explanation detail:** verbose (default) or token saver (one line per issue)
 - A target keyword, if one isn't obvious
 
 Questions that don't apply to your chosen mode are skipped.

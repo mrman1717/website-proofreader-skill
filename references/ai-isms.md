@@ -25,7 +25,7 @@ delve, tapestry, landscape (figurative), realm, navigate (figurative), unlock, u
 - **Dramatic fragmentation**: punchy one-word sentences for fake gravitas. "Simple. Effective. Done."
 - **False agency / inanimate actors**: "the solution empowers", "the data tells a story", "this feature unlocks". Name the human doing the thing.
 - **Superficial -ing analysis**: tacked-on participial clauses claiming significance ("...streamlining your workflow and boosting productivity").
-- **Em dash overuse**: more than one or two per few hundred words is a tell.
+- **Em dash overuse**: more than one or two per few hundred words is a tell. Em dashes (—) only — en dashes (–) are standard British English punctuation (see the proofing checklist) and are not an AI tell.
 - **Quotable closers**: sentences engineered to sound like pull-quotes.
 
 ## 4. Vagueness and inflation
