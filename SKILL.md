@@ -1,8 +1,11 @@
 ---
 name: website-proofreader
+license: MIT
 metadata:
-  version: 1.1.0
+  version: 1.1.1
   date: 2026-06-10
+  author: mrman1717
+  repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
   Proofread and improve website content: spelling and grammar (UK English),
   AI-ism detection and removal, and on-page SEO review. Use this skill whenever

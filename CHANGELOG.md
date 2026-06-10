@@ -4,6 +4,15 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.1.1] — 2026-06-10
+
+### Added
+- MIT licence: `license: MIT` in SKILL.md frontmatter plus a LICENSE file.
+- SKILL.md metadata: `author` (mrman1717) and `repository` (public GitHub repo URL).
+
+### Changed
+- README.md: added licence section; LICENSE added to the file structure listing.
+
 ## [1.1.0] — 2026-06-10
 
 ### Added

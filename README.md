@@ -44,6 +44,7 @@ website-proofreader/
 ├── SKILL.md                          # workflow Claude follows
 ├── README.md                         # this file
 ├── CHANGELOG.md                      # version history
+├── LICENSE                           # MIT
 └── references/
     ├── tone-of-voice.md
     ├── proofing-rules-checklist.md
@@ -54,3 +55,7 @@ website-proofreader/
 ## Version
 
 The current version number and date live in the `metadata` block of `SKILL.md`. See `CHANGELOG.md` for version history.
+
+## Licence
+
+Released under the [MIT License](LICENSE). Source: [github.com/mrman1717/website-proofreader-skill](https://github.com/mrman1717/website-proofreader-skill).
