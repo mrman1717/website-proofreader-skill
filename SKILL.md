@@ -2,7 +2,7 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.1.1
+  version: 1.1.2
   date: 2026-06-10
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill

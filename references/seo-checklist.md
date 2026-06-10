@@ -73,3 +73,28 @@ You need a **target keyword/topic**. If not given, infer it from the content, st
 ## Reporting
 
 For every SEO issue: state what's wrong, why it matters (one line), and the specific fix — ideally with rewritten example text (e.g. propose the actual improved title tag, not "improve the title").
+
+## Sources
+
+The checks above synthesise established on-page SEO fundamentals with
+current (mid-2026) guidance from:
+
+- Semrush — On-page SEO checklist: The complete task list for 2026 —
+  https://www.semrush.com/blog/on-page-seo-checklist/
+- Backlinko — On-Page SEO: The Definitive Guide —
+  https://backlinko.com/on-page-seo
+- Loganix — 25 On-Page SEO Tips that WORK in 2026 —
+  https://loganix.com/on-page-seo-tips/
+- WordStream — On-Page SEO: The Complete Guide for 2026 —
+  https://www.wordstream.com/blog/ws/2022/04/06/on-page-seo
+- Hosting.com — 9 Proven On-Page SEO Tactics for 2026 —
+  https://hosting.com/blog/on-page-seo-checklist/
+- Svitla Systems — SEO Strategy Best Practices for 2026 —
+  https://svitla.com/blog/seo-best-practices/
+- ALM Corp — 47 SEO Best Practices That Drive Results in 2026 —
+  https://almcorp.com/blog/seo-best-practices-complete-guide-2026/
+- Jason Pittock — SEO 2026 Best Practices —
+  https://jasonpittock.com/blog/seo-2026-best-practices/
+
+Last reviewed: June 2026. External links may go stale; verify before
+relying on them.
