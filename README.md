@@ -1,0 +1,48 @@
+# Website Proofreader — Claude Skill
+
+Proofreads website content in three passes:
+
+1. **Spelling & grammar** — UK English enforced, plus consistency and web-specific checks
+2. **AI-isms** — detects and removes overused AI words, phrases, and formulaic structures
+3. **On-page SEO** — checks against current (2026) best practices, including AI-search visibility
+
+## What it asks you each run
+
+- **Output format:** polished copy + change log, or an annotated report (no rewrite)
+- **SEO depth:** basics / standard / full audit
+- A target keyword, if one isn't obvious
+
+## How to use it
+
+1. Install the `.skill` file: Claude.ai → Settings → Capabilities → Skills → Upload.
+2. Start a chat and paste your web copy, or upload it (.txt, .md, .docx, .pdf, .html).
+3. Say something like *"Proofread this landing page"* — the skill triggers automatically.
+4. Answer the two setup questions, then review the output.
+
+## Customising it for your brand
+
+Edit `references/tone-of-voice.md` — it's a template with placeholders for your brand voice, preferred/banned vocabulary, and style choices, plus a slot for sample copy so Claude can match your rhythm. Re-zip and re-upload after editing.
+
+You can also tighten or extend:
+
+- `references/proofing-rules-checklist.md` — house style rules
+- `references/ai-isms.md` — words/patterns to ban
+- `references/seo-checklist.md` — SEO checks per depth level
+
+## File structure
+
+```
+website-proofreader/
+├── SKILL.md                          # workflow Claude follows
+├── README.md                         # this file
+├── CHANGELOG.md                      # version history
+└── references/
+    ├── tone-of-voice.md
+    ├── proofing-rules-checklist.md
+    ├── ai-isms.md
+    └── seo-checklist.md
+```
+
+## Version
+
+The current version number and date live in the `metadata` block of `SKILL.md`. See `CHANGELOG.md` for version history.
