@@ -1,7 +1,7 @@
 ---
 name: website-proofreader
 metadata:
-  version: 1.0.1
+  version: 1.1.0
   date: 2026-06-10
 description: |
   Proofread and improve website content: spelling and grammar (UK English),
@@ -10,8 +10,8 @@ description: |
   copy, landing pages, blog posts, product pages, meta descriptions, or any
   website text — even if they only mention one aspect (e.g. just "check the
   grammar" or "is this too AI-sounding?"). Also trigger when the user pastes
-  web copy and asks for feedback, uploads a page draft, or mentions SEO for
-  written content.
+  web copy and asks for feedback, uploads a page draft, gives a URL, sitemap,
+  or list of pages to check, or mentions SEO for written content.
 ---
 
 # Website Proofreader
@@ -31,34 +31,57 @@ Read all four reference files before analysing anything:
 3. `references/ai-isms.md` — AI-generated-writing patterns to detect and remove
 4. `references/seo-checklist.md` — on-page SEO checks, organised by depth level
 
-### Step 2: Ask the user two setup questions
+### Step 2: Ask the setup questions
 
-Before analysing, ask (use tappable options if an option-presenting tool is available, otherwise ask in plain text):
+Before analysing, ask (use tappable options if an option-presenting tool is available, otherwise ask in plain text). Only ask the questions that apply — skip any the user has already answered in their request, and skip questions made irrelevant by the chosen mode.
 
-**Question 1 — Output format:**
+**Question 1 — Mode:**
+- **Proofreader only** — spelling/grammar pass + AI-ism pass; no SEO checks
+- **SEO checker only** — SEO pass only; no proofing or AI-ism checks
+- **Both** — all three passes
+
+**Question 2 — Output format** (skip if mode is SEO-only; SEO-only always produces a report):
 - **Polished copy + change log** — rewrite the content and list every change with a reason
 - **Annotated report only** — no rewrite; a structured report of issues with suggested fixes
 
-**Question 2 — SEO depth:**
+**Question 3 — SEO depth** (skip if mode is proofreader-only):
 - **Basics** — title, meta description, headings, links
 - **Standard** — basics + keyword usage and readability
 - **Full audit** — standard + content structure, image alt text, AI-search visibility
-
-If the user has already specified these in their request, don't re-ask — use what they said.
 
 If a target keyword or topic is needed for SEO checks and hasn't been given, ask for it (or infer it from the content and state your assumption).
 
 ### Step 3: Get the content
 
-Accept content pasted in chat, or uploaded as .txt, .md, .docx, .pdf, or .html. For uploaded files, read them from `/mnt/user-data/uploads/`. For HTML, analyse the rendered text but also check the title tag, meta description, heading hierarchy, and image alt attributes if present.
+The user can supply content in any of these ways. Identify which applies before proceeding.
 
-### Step 4: Run the three passes
+**a) A single URL.** Ask whether they want just that page checked, or the whole site crawled from it. (If it's obviously a deep inner page and they asked to "check this page", don't ask — just check it.)
 
-Work through the content in this order, noting every issue with its location (quote a short snippet so the user can find it):
+**b) A whole site (main URL + crawl).** Discover pages by trying `/sitemap.xml` first (also check `robots.txt` for a sitemap location); if no sitemap is found, fall back to following internal links from the main page. List the pages found before analysing.
+
+**c) A sitemap (XML or similar).** Parse it and use the URLs it lists.
+
+**d) A list of pages/URLs.** All URLs must belong to one single site (same registrable domain; subdomains of the same site are fine). If the list spans more than one site, reject it and ask the user to resubmit a single-site list.
+
+**e) Pasted or file-based content.** Content pasted in chat, uploaded as .txt, .md, .docx, .pdf, or .html (in Claude.ai, read uploads from `/mnt/user-data/uploads/`), or pointed to as local files when running in Claude Code or similar.
+
+**Multi-page rules (applies to b, c, d):**
+
+- **Page cap:** fetch and analyse at most **10 pages** per batch. If more are found, list them all, process the first 10 (preferring key pages: home, main service/product pages, about, contact), then ask whether to continue with the next batch.
+- **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content (e.g. under a `.cache/` or temp folder) and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Don't include cached files in any output or package.
+- **Result format:** ask the user whether they want **one combined report** (organised by page) or **a separate output per page plus a site-wide summary** of recurring issues.
+
+For HTML (fetched or uploaded), analyse the rendered text but also check the title tag, meta description, heading hierarchy, and image alt attributes if present.
+
+### Step 4: Run the passes for the chosen mode
+
+Run only the passes the chosen mode includes (proofreader-only: passes 1–2; SEO-only: pass 3; both: all). Work through the content in this order, noting every issue with its location (quote a short snippet so the user can find it):
 
 1. **Proofing pass** — apply `proofing-rules-checklist.md`. UK English spelling and conventions are mandatory; flag every US spelling.
 2. **AI-ism pass** — apply `ai-isms.md`. Flag patterns, don't just reword silently; the user wants to learn what to avoid.
 3. **SEO pass** — apply `seo-checklist.md` at the depth chosen in Step 2 only. Do not run full-audit checks if the user chose basics.
+
+For multi-page jobs, run the passes per page, and also note site-wide patterns (issues recurring across pages) for the summary.
 
 ### Step 5: Deliver the output
 
@@ -94,7 +117,11 @@ Work through the content in this order, noting every issue with its location (qu
 [each: what's wrong, why it matters, recommended fix]
 ```
 
-For long content (over ~1,500 words), save the output as a markdown file and share it rather than flooding the chat.
+Omit sections for passes that weren't run (e.g. no SEO section in proofreader-only mode).
+
+For multi-page jobs, deliver in the format chosen in Step 3 (combined report organised by page, or per-page outputs plus a site-wide summary of recurring issues).
+
+For long content (over ~1,500 words, or any multi-page job), save the output as markdown file(s) and share them rather than flooding the chat.
 
 ## Principles
 

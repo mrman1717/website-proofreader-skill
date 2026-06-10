@@ -8,16 +8,24 @@ Proofreads website content in three passes:
 
 ## What it asks you each run
 
+- **Mode:** proofreader only / SEO checker only / both
 - **Output format:** polished copy + change log, or an annotated report (no rewrite)
 - **SEO depth:** basics / standard / full audit
 - A target keyword, if one isn't obvious
 
+Questions that don't apply to your chosen mode are skipped.
+
 ## How to use it
 
 1. Install the `.skill` file: Claude.ai → Settings → Capabilities → Skills → Upload.
-2. Start a chat and paste your web copy, or upload it (.txt, .md, .docx, .pdf, .html).
+2. Start a chat and give it your content in any of these ways:
+   - Paste the copy, or upload it (.txt, .md, .docx, .pdf, .html)
+   - A single page URL
+   - A main site URL to crawl (sitemap first, then internal links; max 10 pages per batch)
+   - A sitemap (XML or similar)
+   - A list of URLs (one site at a time)
 3. Say something like *"Proofread this landing page"* — the skill triggers automatically.
-4. Answer the two setup questions, then review the output.
+4. Answer the setup questions, then review the output. Multi-page jobs can be delivered as one combined report or per-page outputs plus a site-wide summary.
 
 ## Customising it for your brand
 

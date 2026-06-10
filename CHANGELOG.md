@@ -4,6 +4,17 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.1.0] — 2026-06-10
+
+### Added
+- Mode selection at the start of each run: proofreader only, SEO checker only, or both. Setup questions that don't apply to the chosen mode are skipped.
+- URL-based content sources: single page URL, whole-site crawl from a main URL (sitemap.xml/robots.txt first, internal links as fallback), sitemap files, and URL lists (single site only — multi-site lists are rejected).
+- Multi-page handling: 10-page batch cap with continuation prompt, local page caching when running in an environment with file access, and a per-run choice between one combined report or per-page outputs plus a site-wide summary.
+
+### Changed
+- SKILL.md: Step 4 passes and Step 5 output templates now respect the chosen mode; multi-page jobs always saved as files.
+- README.md: updated usage instructions for the new modes and content sources.
+
 ## [1.0.1] — 2026-06-10
 
 ### Added
