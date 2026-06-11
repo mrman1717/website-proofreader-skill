@@ -2,7 +2,7 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.2.2
+  version: 1.3.0
   date: 2026-06-11
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
@@ -23,7 +23,7 @@ Proofread website content against the brand's tone of voice, UK English conventi
 
 ## Workflow
 
-Follow these steps in order. Ask only the setup questions in Step 2 that apply, but never silently assume answers to Questions 1–3 — the user wants to choose these each run unless they've already said so in their request.
+Follow these steps in order: identify the content first, then ask all applicable setup questions in one batch (Step 3) so the user answers everything in a single round-trip. Never silently assume answers to Questions 1–3 — the user wants to choose these each run unless they've already said so in their request.
 
 ### Step 1: Load the reference files
 
@@ -34,42 +34,9 @@ Read all four reference files before analysing anything:
 3. `references/ai-isms.md` — AI-generated-writing patterns to detect and remove
 4. `references/seo-checklist.md` — on-page SEO checks, organised by depth level
 
-### Step 2: Ask the setup questions
+### Step 2: Identify and get the content
 
-Before analysing, ask (use tappable options if an option-presenting tool is available, otherwise ask in plain text). Only ask the questions that apply — skip any the user has already answered in their request, and skip questions made irrelevant by the chosen mode.
-
-**Question 1 — Mode:**
-- **Proofreader only** — spelling/grammar pass + AI-ism pass; no SEO checks
-- **SEO checker only** — SEO pass only; no proofing or AI-ism checks
-- **Both** — all three passes
-
-**Question 2 — Output format** (skip if mode is SEO-only; SEO-only always produces a report):
-- **Polished copy + change log** — rewrite the content and list every change with a reason
-- **Annotated report only** — no rewrite; a structured report of issues with suggested fixes
-
-When the content comes from fetched URLs (sources a–d in Step 3), recommend the annotated report: the user can't paste a rewrite back into a live site wholesale, and polished copy would be the rendered text only, not re-injectable HTML. Offer polished copy anyway if they prefer it — per-page rewritten text is still useful for handing to whoever edits the site.
-
-**Question 3 — SEO depth** (skip if mode is proofreader-only):
-- **Basics** — title, meta description, headings, links
-- **Standard** — basics + keyword usage and readability
-- **Full audit** — standard + content structure, image alt text, AI-search visibility
-
-**Question 4 — Report level and detail** (defaults apply if the user doesn't choose; don't press for an answer):
-- **Report level:** errors only / errors + warnings / **full** (errors, warnings, and general comments) — default: full
-- **Explanation detail:** **verbose** (full explanations, as in the templates below) / token saver (one short line per issue, no elaboration) — default: verbose
-
-If a target keyword or topic is needed for SEO checks and hasn't been given, ask for it (or infer it from the content and state your assumption).
-
-**Severity tiers** (used by the report level setting):
-- **Error** — objectively wrong: misspellings, US spellings, grammar mistakes, broken/placeholder links, missing required SEO elements (e.g. no title tag, no H1)
-- **Warning** — very likely should change: AI-ism patterns, inconsistencies (spelling variants, capitalisation, dash style, link formats), weak/duplicate SEO elements, readability problems
-- **General comment** — style observations and optional improvements: tone suggestions, structure ideas, things worth a human judgement call
-
-Issues below the chosen report level are not listed individually; if any were suppressed, end the report with a one-line note (e.g. "4 general comments suppressed — rerun at full level to see them").
-
-### Step 3: Get the content
-
-The user can supply content in any of these ways. Identify which applies before proceeding.
+The user can supply content in any of these ways. Identify which applies before asking the setup questions — the right questions depend on it.
 
 **a) A single URL.** Ask whether they want just that page checked, or the whole site crawled from it. (If it's obviously a deep inner page and they asked to "check this page", don't ask — just check it.)
 
@@ -85,8 +52,7 @@ The user can supply content in any of these ways. Identify which applies before 
 
 - **Page cap:** fetch and analyse at most **10 pages** per batch. If more are found, list them all, process the first 10 (preferring key pages: home, main service/product pages, about, contact), then ask whether to continue with the next batch.
 - **Crawl hygiene:** check content pages only. Skip tag/category/archive listings, pagination (`/page/2/` etc.), search results, query-string and `#fragment` duplicates of the same page, feeds, and non-HTML files (PDFs, images). Where the HTML is visible, respect signals: skip `noindex` pages, and treat a page whose canonical URL points elsewhere as a duplicate (check the canonical target instead). If the user explicitly lists such a URL (source d), check it anyway — their list overrides these filters.
-- **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content (e.g. under a `.cache/` or temp folder) and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Don't include cached files in any output or package.
-- **Result format:** ask the user whether they want **one combined report** (organised by page) or **a separate output per page plus a site-wide summary** of recurring issues.
+- **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Put the cache in a temporary location **outside the user's project/content folders** (e.g. the OS temp directory), so it can never be committed to a repo or swept into a package. Don't include cached files in any output.
 
 **No web access:** sources a–d need the ability to fetch URLs. If the current environment can't (no web-fetch tool, or network access is blocked), say so plainly at the start, don't attempt the crawl, and ask for the content as pasted text or uploaded/local files (source e) instead.
 
@@ -94,13 +60,50 @@ The user can supply content in any of these ways. Identify which applies before 
 
 For HTML (fetched or uploaded), analyse the rendered text but also check the title tag, meta description, heading hierarchy, and image alt attributes if present.
 
+### Step 3: Ask the setup questions
+
+Ask everything applicable in **one batch** (use tappable options if an option-presenting tool is available, otherwise ask in plain text). Skip any question the user has already answered in their request, and any made irrelevant by another answer (resolve Question 1 first if it changes what else applies).
+
+**Question 1 — Mode:**
+- **Proofreader only** — spelling/grammar pass + AI-ism pass; no SEO checks
+- **SEO checker only** — SEO pass only; no proofing or AI-ism checks
+- **Both** — all three passes
+
+**Question 2 — Output format** (skip if mode is SEO-only; SEO-only always produces a report):
+- **Polished copy + change log** — rewrite the content and list every change with a reason
+- **Annotated report only** — no rewrite; a structured report of issues with suggested fixes
+
+When the content comes from fetched URLs (sources a–d), recommend the annotated report: the user can't paste a rewrite back into a live site wholesale, and polished copy would be the rendered text only, not re-injectable HTML. Offer polished copy anyway if they prefer it — per-page rewritten text is still useful for handing to whoever edits the site.
+
+**Question 3 — SEO depth** (skip if mode is proofreader-only):
+- **Basics** — title, meta description, headings, links
+- **Standard** — basics + keyword usage and readability
+- **Full audit** — standard + content structure, image alt text, AI-search visibility
+
+**Question 4 — Multi-page result format** (only for multi-page jobs):
+- **One combined report** — organised by page
+- **Per-page outputs + site-wide summary** of recurring issues
+
+**Question 5 — Report level and detail** (defaults apply if the user doesn't choose; don't press for an answer):
+- **Report level:** errors only / errors + warnings / **full** (errors, warnings, and general comments) — default: full
+- **Explanation detail:** **verbose** (full explanations, as in the templates below) / token saver (one short line per issue, no elaboration) — default: verbose
+
+If a target keyword or topic is needed for SEO checks and hasn't been given, ask for it in the same batch (or infer it from the content and state your assumption).
+
+**Severity tiers** (used by the report level setting):
+- **Error** — objectively wrong: misspellings, US spellings, grammar mistakes, broken/placeholder links, missing required SEO elements (e.g. no title tag, no H1)
+- **Warning** — very likely should change: AI-ism patterns, inconsistencies (spelling variants, capitalisation, dash style, link formats), weak/duplicate SEO elements, readability problems
+- **General comment** — style observations and optional improvements: tone suggestions, structure ideas, things worth a human judgement call
+
+The reference checklists tag their sections with these default severities — use those tags, adjusted by judgement where a specific instance is clearly more or less serious. Issues below the chosen report level are not listed individually; if any were suppressed, end the report with a one-line note (e.g. "4 general comments suppressed — rerun at full level to see them").
+
 ### Step 4: Run the passes for the chosen mode
 
 Run only the passes the chosen mode includes (proofreader-only: passes 1–2; SEO-only: pass 3; both: all). Work through the content in this order, noting every issue with its location (quote a short snippet so the user can find it):
 
 1. **Proofing pass** — apply `proofing-rules-checklist.md`. UK English spelling and conventions are mandatory; flag every US spelling.
 2. **AI-ism pass** — apply `ai-isms.md`. Flag patterns, don't just reword silently; the user wants to learn what to avoid.
-3. **SEO pass** — apply `seo-checklist.md` at the depth chosen in Step 2 only. Do not run full-audit checks if the user chose basics.
+3. **SEO pass** — apply `seo-checklist.md` at the depth chosen in Step 3 only. Do not run full-audit checks if the user chose basics.
 
 For multi-page jobs, run the passes per page, and also note site-wide patterns (issues recurring across pages) for the summary.
 
@@ -114,11 +117,11 @@ For multi-page jobs, run the passes per page, and also note site-wide patterns (
 
 # Change Log
 ## Spelling & grammar
-- "[original]" → "[fixed]" — [reason]
+- **[error]** "[original]" → "[fixed]" — [reason]
 ## Tone & AI-isms
-- "[original]" → "[fixed]" — [pattern name + reason]
+- **[warning]** "[original]" → "[fixed]" — [pattern name + reason]
 ## SEO
-- [change or recommendation] — [reason]
+- **[severity]** [change or recommendation] — [reason]
 
 # Outstanding recommendations
 [anything that needs the user's decision, e.g. missing meta description, keyword choice]
@@ -131,18 +134,18 @@ For multi-page jobs, run the passes per page, and also note site-wide patterns (
 ## Summary
 [2-3 sentences: overall quality, biggest issues]
 ## Spelling & grammar (X issues)
-[each: snippet, problem, suggested fix]
+[each: **[severity]** snippet, problem, suggested fix]
 ## AI-isms (X issues)
-[each: snippet, pattern name, suggested fix]
+[each: **[severity]** snippet, pattern name, suggested fix]
 ## SEO ([depth level], X issues)
-[each: what's wrong, why it matters, recommended fix]
+[each: **[severity]** what's wrong, why it matters, recommended fix]
 ```
 
 Omit sections for passes that weren't run (e.g. no SEO section in proofreader-only mode).
 
-Within each section, mark each issue's severity (error / warning / general comment) and include only severities at or above the chosen report level. In token-saver mode, compress each entry to a single short line — "[snippet]" → "[fix]" (rule) — and trim the summary to one sentence; in verbose mode follow the templates as written. Polished copy always applies fixes for all severities regardless of report level — the level only filters what's listed in the change log/report.
+The **[severity]** marker on each entry is error, warning, or comment (general comment), per the tiers in Step 3; include only severities at or above the chosen report level. In token-saver mode, compress each entry to a single short line — **[severity]** "[snippet]" → "[fix]" (rule) — and trim the summary to one sentence; in verbose mode follow the templates as written. Polished copy always applies fixes for all severities regardless of report level — the level only filters what's listed in the change log/report.
 
-For multi-page jobs, deliver in the format chosen in Step 3 (combined report organised by page, or per-page outputs plus a site-wide summary of recurring issues).
+For multi-page jobs, deliver in the format chosen in Step 3 (Question 4: combined report organised by page, or per-page outputs plus a site-wide summary of recurring issues).
 
 For long content (over ~1,500 words, or any multi-page job), save the output as markdown file(s) and share them rather than flooding the chat.
 

@@ -4,6 +4,8 @@ Run only the level the user chose. Each level includes everything in the levels 
 
 You need a **target keyword/topic**. If not given, infer it from the content, state the assumption, and invite correction.
 
+**Default severities** (used by the report level setting): a **missing** required element (no title tag, no meta description, no H1, broken links) is an **error**; a present-but-weak element (too long/short, keyword absent, duplicate, vague) is a **warning**; opportunities and suggestions (structured data ideas, structure improvements, AI-search formatting) are **comments**. Adjust by judgement for clear-cut cases.
+
 ## Level 1 — Basics
 
 **Title tag**
@@ -91,10 +93,6 @@ current (mid-2026) guidance from:
   https://hosting.com/blog/on-page-seo-checklist/
 - Svitla Systems — SEO Strategy Best Practices for 2026 —
   https://svitla.com/blog/seo-best-practices/
-- ALM Corp — 47 SEO Best Practices That Drive Results in 2026 —
-  https://almcorp.com/blog/seo-best-practices-complete-guide-2026/
-- Jason Pittock — SEO 2026 Best Practices —
-  https://jasonpittock.com/blog/seo-2026-best-practices/
 
 Last reviewed: June 2026. External links may go stale; verify before
 relying on them.

@@ -15,11 +15,13 @@ Proofreads website content in three passes:
 - **Explanation detail:** verbose (default) or token saver (one line per issue)
 - A target keyword, if one isn't obvious
 
-Questions that don't apply to your chosen mode are skipped.
+All applicable questions are asked together in one batch after the content is identified; questions that don't apply to your chosen mode or content source are skipped. Issues are graded error / warning / comment, so you can filter the report to just what matters.
 
 ## How to use it
 
-1. Install the `.skill` file: Claude.ai → Settings → Capabilities → Skills → Upload.
+1. Install the skill:
+   - **Claude.ai:** Settings → Capabilities → Skills → Upload the `.skill` file.
+   - **Claude Code / Claude desktop:** copy the `website-proofreader/` folder into `~/.claude/skills/` (creating the folder if needed), then start a new session.
 2. Start a chat and give it your content in any of these ways:
    - Paste the copy, or upload it (.txt, .md, .docx, .pdf, .html)
    - A single page URL

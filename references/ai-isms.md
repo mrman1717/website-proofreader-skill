@@ -2,6 +2,8 @@
 
 These are hallmarks of AI-generated text. Flag each occurrence by pattern name, then suggest or apply a natural rewrite. Rewrite to keep the meaning; don't delete content to dodge a pattern.
 
+**Default severity: warning** for every pattern in this file (AI-isms are judgement calls, not objective errors). Downgrade an isolated borderline instance to a comment; upgrade to error only where a term is on the tone-of-voice banned list — banned words are errors.
+
 ## 1. Overused AI vocabulary
 
 Flag these words — almost always replaceable with something plainer:

@@ -4,6 +4,18 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.3.0] — 2026-06-11
+
+### Changed
+- Workflow restructured: content is identified first (now Step 2), then all applicable setup questions are asked in one batch (now Step 3) — including the multi-page result format and target keyword, which previously floated in other steps.
+- Output templates now show an explicit **[severity]** marker on every change log/report entry.
+- Reference checklists tag each section with a default severity (error / warning / comment), making report-level filtering consistent between runs: spelling/grammar/UK conventions are errors, consistency and AI-isms are warnings (banned tone-of-voice words are errors), clarity is comment-level, and SEO severities follow missing = error / weak = warning / opportunity = comment.
+- Page cache for multi-page jobs must live in a temp location outside the user's project folders, so it can't be committed or packaged.
+- seo-checklist.md Sources pruned to higher-authority references.
+
+### Added
+- README: Claude Code / desktop installation instructions (copy the folder to `~/.claude/skills/`).
+
 ## [1.2.2] — 2026-06-11
 
 ### Added
