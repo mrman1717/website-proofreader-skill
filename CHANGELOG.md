@@ -4,6 +4,16 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.2.1] — 2026-06-11
+
+### Fixed
+- Step 2 intro no longer says to ask every setup question every time, which contradicted the skip rules and Question 4's silent defaults.
+- ai-isms.md: removed duplicated "elevate" from the vocabulary list.
+
+### Added
+- Output format guidance for URL-sourced content: recommend the annotated report (a rewrite isn't re-injectable into a live site), while still offering polished copy.
+- Fetch-failure handling: unfetchable or empty pages are listed as "could not check" with the reason and a paste/upload fallback; never silently skipped.
+
 ## [1.2.0] — 2026-06-10
 
 ### Added

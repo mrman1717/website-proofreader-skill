@@ -6,7 +6,7 @@ These are hallmarks of AI-generated text. Flag each occurrence by pattern name, 
 
 Flag these words — almost always replaceable with something plainer:
 
-delve, tapestry, landscape (figurative), realm, navigate (figurative), unlock, unleash, leverage (verb), elevate, empower, foster, robust, seamless, seamlessly, holistic, synergy, paradigm, cutting-edge, game-changer, revolutionise (when nothing is revolutionary), transformative, pivotal, crucial (overuse), comprehensive, myriad, plethora, utilise (use "use"), facilitate, streamline, harness, embark, journey (figurative), testament, beacon, vibrant, bustling, nestled, boast(s), elevate, supercharge, dive deep / deep dive, in today's fast-paced world, ever-evolving, in the digital age.
+delve, tapestry, landscape (figurative), realm, navigate (figurative), unlock, unleash, leverage (verb), elevate, empower, foster, robust, seamless, seamlessly, holistic, synergy, paradigm, cutting-edge, game-changer, revolutionise (when nothing is revolutionary), transformative, pivotal, crucial (overuse), comprehensive, myriad, plethora, utilise (use "use"), facilitate, streamline, harness, embark, journey (figurative), testament, beacon, vibrant, bustling, nestled, boast(s), supercharge, dive deep / deep dive, in today's fast-paced world, ever-evolving, in the digital age.
 
 ## 2. Filler and throat-clearing
 

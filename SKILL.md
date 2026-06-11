@@ -2,8 +2,8 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.2.0
-  date: 2026-06-10
+  version: 1.2.1
+  date: 2026-06-11
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
@@ -23,7 +23,7 @@ Proofread website content against the brand's tone of voice, UK English conventi
 
 ## Workflow
 
-Follow these steps in order. Do not skip the setup questions in Step 2 — the user wants to choose these every time.
+Follow these steps in order. Ask only the setup questions in Step 2 that apply, but never silently assume answers to Questions 1–3 — the user wants to choose these each run unless they've already said so in their request.
 
 ### Step 1: Load the reference files
 
@@ -46,6 +46,8 @@ Before analysing, ask (use tappable options if an option-presenting tool is avai
 **Question 2 — Output format** (skip if mode is SEO-only; SEO-only always produces a report):
 - **Polished copy + change log** — rewrite the content and list every change with a reason
 - **Annotated report only** — no rewrite; a structured report of issues with suggested fixes
+
+When the content comes from fetched URLs (sources a–d in Step 3), recommend the annotated report: the user can't paste a rewrite back into a live site wholesale, and polished copy would be the rendered text only, not re-injectable HTML. Offer polished copy anyway if they prefer it — per-page rewritten text is still useful for handing to whoever edits the site.
 
 **Question 3 — SEO depth** (skip if mode is proofreader-only):
 - **Basics** — title, meta description, headings, links
@@ -84,6 +86,8 @@ The user can supply content in any of these ways. Identify which applies before 
 - **Page cap:** fetch and analyse at most **10 pages** per batch. If more are found, list them all, process the first 10 (preferring key pages: home, main service/product pages, about, contact), then ask whether to continue with the next batch.
 - **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content (e.g. under a `.cache/` or temp folder) and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Don't include cached files in any output or package.
 - **Result format:** ask the user whether they want **one combined report** (organised by page) or **a separate output per page plus a site-wide summary** of recurring issues.
+
+**Fetch failures:** never silently skip a page. If a URL can't be fetched or returns no usable text (blocked request, 403/404, robots.txt disallow, cookie/consent wall, or a JavaScript-rendered page with empty HTML), list it in the output as "could not check", say why, and suggest the fallback: paste the copy or upload the page as a file. If every URL fails, stop and ask for the content another way rather than guessing.
 
 For HTML (fetched or uploaded), analyse the rendered text but also check the title tag, meta description, heading hierarchy, and image alt attributes if present.
 
