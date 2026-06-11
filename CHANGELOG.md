@@ -4,6 +4,12 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.2.2] — 2026-06-11
+
+### Added
+- Crawl hygiene rules: content pages only — skip archives/tag listings, pagination, search results, query-string/fragment duplicates, feeds, and non-HTML files; respect noindex and canonical signals where visible. User-listed URLs override the filters.
+- No-web-access handling: if the environment can't fetch URLs, the skill says so up front and asks for pasted or uploaded content instead of attempting a crawl.
+
 ## [1.2.1] — 2026-06-11
 
 ### Fixed

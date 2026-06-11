@@ -2,7 +2,7 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.2.1
+  version: 1.2.2
   date: 2026-06-11
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
@@ -84,8 +84,11 @@ The user can supply content in any of these ways. Identify which applies before 
 **Multi-page rules (applies to b, c, d):**
 
 - **Page cap:** fetch and analyse at most **10 pages** per batch. If more are found, list them all, process the first 10 (preferring key pages: home, main service/product pages, about, contact), then ask whether to continue with the next batch.
+- **Crawl hygiene:** check content pages only. Skip tag/category/archive listings, pagination (`/page/2/` etc.), search results, query-string and `#fragment` duplicates of the same page, feeds, and non-HTML files (PDFs, images). Where the HTML is visible, respect signals: skip `noindex` pages, and treat a page whose canonical URL points elsewhere as a duplicate (check the canonical target instead). If the user explicitly lists such a URL (source d), check it anyway — their list overrides these filters.
 - **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content (e.g. under a `.cache/` or temp folder) and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Don't include cached files in any output or package.
 - **Result format:** ask the user whether they want **one combined report** (organised by page) or **a separate output per page plus a site-wide summary** of recurring issues.
+
+**No web access:** sources a–d need the ability to fetch URLs. If the current environment can't (no web-fetch tool, or network access is blocked), say so plainly at the start, don't attempt the crawl, and ask for the content as pasted text or uploaded/local files (source e) instead.
 
 **Fetch failures:** never silently skip a page. If a URL can't be fetched or returns no usable text (blocked request, 403/404, robots.txt disallow, cookie/consent wall, or a JavaScript-rendered page with empty HTML), list it in the output as "could not check", say why, and suggest the fallback: paste the copy or upload the page as a file. If every URL fails, stop and ask for the content another way rather than guessing.
 
