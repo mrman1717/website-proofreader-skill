@@ -4,6 +4,12 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.3.1] — 2026-06-16
+
+### Fixed
+- Structured-data false negatives: the SEO pass no longer reports schema (FAQ, Product, etc.) as "missing"/"not detected" when working from rendered text. JSON-LD lives in `<script type="application/ld+json">` blocks that are stripped from a page's visible text, so absence can't be assumed from rendered copy alone. The skill now checks the raw HTML/page source for existing `application/ld+json` before recommending schema, and where only rendered text is available, phrases the suggestion conditionally and tells the user how to verify.
+- SKILL.md Step 2: structured data added to the list of raw-markup items to check on fetched/uploaded HTML, with a note that fetched pages are often reduced to rendered text (which strips `<script>` JSON-LD).
+
 ## [1.3.0] — 2026-06-11
 
 ### Changed

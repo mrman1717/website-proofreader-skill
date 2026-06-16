@@ -65,7 +65,8 @@ You need a **target keyword/topic**. If not given, infer it from the content, st
 - Definitions, steps, and comparisons formatted so they can be extracted (numbered steps for processes, tables for comparisons)
 - Demonstrated experience/expertise signals in the copy: specifics, first-hand detail, named authors or credentials where relevant (E-E-A-T)
 - Dates and facts current; flag stale years or outdated claims
-- Suggest structured data opportunities where relevant (FAQ, HowTo, Product, Article schema) — recommend only; implementation is a dev task
+- **Structured data (schema markup):** JSON-LD lives in `<script type="application/ld+json">` blocks, which are **not** part of a page's rendered/visible text — fetched or pasted body copy will not show it even when it is present on the page. Before recommending any schema, check the raw HTML/page source for existing `application/ld+json` and note what type(s) are already there (FAQPage, Product, Article, etc.). Only state that schema is "missing" or "not detected" if you have actually examined the raw HTML and confirmed its absence.
+- If you only have rendered text (most fetched pages, pasted copy), do **not** claim structured data is absent. Phrase the suggestion conditionally — "if FAQ schema isn't already implemented, this page is a good candidate" — and tell the user how to confirm (view page source, or search the source for `application/ld+json`). Where schema is genuinely absent or could be extended, suggest opportunities (FAQ, HowTo, Product, Article) — recommend only; implementation is a dev task.
 
 **Freshness and trust**
 - Visible publish/update date recommended for time-sensitive content

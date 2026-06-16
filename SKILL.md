@@ -2,8 +2,8 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.3.0
-  date: 2026-06-11
+  version: 1.3.1
+  date: 2026-06-16
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
@@ -58,7 +58,7 @@ The user can supply content in any of these ways. Identify which applies before 
 
 **Fetch failures:** never silently skip a page. If a URL can't be fetched or returns no usable text (blocked request, 403/404, robots.txt disallow, cookie/consent wall, or a JavaScript-rendered page with empty HTML), list it in the output as "could not check", say why, and suggest the fallback: paste the copy or upload the page as a file. If every URL fails, stop and ask for the content another way rather than guessing.
 
-For HTML (fetched or uploaded), analyse the rendered text but also check the title tag, meta description, heading hierarchy, and image alt attributes if present.
+For HTML (fetched or uploaded), analyse the rendered text but also check the raw markup where available: title tag, meta description, heading hierarchy, image alt attributes, and structured data (`<script type="application/ld+json">` blocks). Note that fetched pages are often reduced to rendered text, which strips `<script>` JSON-LD and other head markup — so the absence of structured data can't be assumed from rendered text alone (see the structured-data note in seo-checklist.md).
 
 ### Step 3: Ask the setup questions
 
