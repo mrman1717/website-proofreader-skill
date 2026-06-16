@@ -2,7 +2,7 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.3.1
+  version: 1.3.2
   date: 2026-06-16
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
@@ -52,7 +52,7 @@ The user can supply content in any of these ways. Identify which applies before 
 
 - **Page cap:** fetch and analyse at most **10 pages** per batch. If more are found, list them all, process the first 10 (preferring key pages: home, main service/product pages, about, contact), then ask whether to continue with the next batch.
 - **Crawl hygiene:** check content pages only. Skip tag/category/archive listings, pagination (`/page/2/` etc.), search results, query-string and `#fragment` duplicates of the same page, feeds, and non-HTML files (PDFs, images). Where the HTML is visible, respect signals: skip `noindex` pages, and treat a page whose canonical URL points elsewhere as a duplicate (check the canonical target instead). If the user explicitly lists such a URL (source d), check it anyway — their list overrides these filters.
-- **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page's content and work from the cache — this avoids re-fetching on follow-up batches or re-runs. Put the cache in a temporary location **outside the user's project/content folders** (e.g. the OS temp directory), so it can never be committed to a repo or swept into a package. Don't include cached files in any output.
+- **Caching:** in an environment with file access (Claude Code or similar), save a local cached copy of each fetched page and work from it **within the current job** — this avoids re-fetching the same page across the 10-page batches of one analysis. Scope the cache to that job only. On a **fresh run** (a new request to check the same page), re-fetch the live page instead of reusing an earlier run's cache: the page may have been edited since, and reporting already-fixed issues (e.g. an updated copyright year, a removed notice) from a stale copy is a real failure. Always re-fetch when the user says they've updated the page. Keep the cache in a temporary location **outside the user's project/content folders** (e.g. the OS temp directory), so it can never be committed to a repo or swept into a package. Don't include cached files in any output.
 
 **No web access:** sources a–d need the ability to fetch URLs. If the current environment can't (no web-fetch tool, or network access is blocked), say so plainly at the start, don't attempt the crawl, and ask for the content as pasted text or uploaded/local files (source e) instead.
 

@@ -4,6 +4,12 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.3.2] — 2026-06-16
+
+### Fixed
+- Stale-cache re-runs: the page cache is now scoped to the current job (across its 10-page batches) only. A fresh run re-fetches the live page instead of reusing an earlier run's cache, and the skill always re-fetches when the user says they've updated the page — so already-fixed issues (e.g. an updated copyright year, a removed COVID-19 notice) are no longer reported from a stale copy.
+- Deliberately obfuscated email addresses (JavaScript cloaking, HTML-entity encoding, "protected from spambots" markers — standard in Joomla and other CMSs) are no longer flagged as a warning. They're treated as an intentional anti-spam choice: noted at most as a general comment, and only when there's no accessible contact fallback.
+
 ## [1.3.1] — 2026-06-16
 
 ### Fixed

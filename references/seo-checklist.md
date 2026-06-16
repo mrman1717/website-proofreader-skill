@@ -26,6 +26,7 @@ You need a **target keyword/topic**. If not given, infer it from the content, st
 - Internal links to relevant pages where natural
 - At least a couple of external links to credible, relevant sources where the content makes claims
 - No broken/placeholder links
+- Email addresses deliberately obfuscated against spam (JavaScript cloaking, HTML-entity encoding, or "protected from spambots"-style markers — standard in Joomla and many other CMSs) are an **intentional anti-spam choice, not an error or warning**. Don't tell the user to "fix" a deliberate measure. Note it at most as a general comment, and only when there's no accessible contact fallback (a contact form or page) — present the spam-vs-findability tradeoff neutrally.
 
 ## Level 2 — Standard (basics + keyword usage & readability)
 
