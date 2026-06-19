@@ -2,19 +2,23 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.3.2
-  date: 2026-06-16
+  version: 1.3.3
+  date: 2026-06-19
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
-  Proofread and improve website content: spelling and grammar (UK English),
-  AI-ism detection and removal, and on-page SEO review. Use this skill whenever
-  the user asks to proofread, check, review, edit, polish, or "look over" web
-  copy, landing pages, blog posts, product pages, meta descriptions, or any
-  website text — even if they only mention one aspect (e.g. just "check the
-  grammar" or "is this too AI-sounding?"). Also trigger when the user pastes
-  web copy and asks for feedback, uploads a page draft, gives a URL, sitemap,
-  or list of pages to check, or mentions SEO for written content.
+  Proofread and improve the written content of a website or web page: UK-English
+  spelling and grammar, AI-ism detection and removal, and on-page SEO of the copy.
+  Trigger when the user wants the WORDING of website copy proofread, copy-edited,
+  or SEO-reviewed — landing pages, blog posts, product/marketing pages, meta
+  descriptions, or other page text they paste, upload, or point to by page URL,
+  sitemap, or list of pages. One aspect is enough (e.g. "fix the grammar on this
+  landing page", "is this homepage copy too AI-sounding?", "review the on-page SEO
+  of this post"). The request must be about improving the text of a website.
+  Do NOT trigger for: reviewing or editing code; proofreading general writing not
+  meant for a website (emails, essays, reports, chat messages); summarising,
+  explaining, or answering questions about a page; fetching a URL for research or
+  data; or technical/off-page SEO unrelated to the page's written content.
 ---
 
 # Website Proofreader

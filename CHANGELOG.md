@@ -4,6 +4,11 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.3.3] — 2026-06-19
+
+### Fixed
+- Over-triggering: the skill was activating too often and on unrelated prompts. The trigger `description` is rewritten to (1) anchor every trigger to the *written content of a website/web page* rather than generic verbs like "check", "review", or "edit"; (2) require proofreading/editing/SEO *intent* instead of firing on a bare pasted URL; and (3) add an explicit **Do NOT trigger** list — code review/editing, general non-website writing (emails, essays, reports), summarising or answering questions about a page, fetching a URL for research, and technical/off-page SEO.
+
 ## [1.3.2] — 2026-06-16
 
 ### Fixed
