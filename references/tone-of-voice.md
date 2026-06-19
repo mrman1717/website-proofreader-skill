@@ -6,7 +6,7 @@
 
 [e.g. "Knowledgeable but never stuffy — like a smart colleague explaining over coffee."]
 
-**Default until customised:** clear, warm, confident, plain-spoken British English.
+**Default until customised:** clear, warm, confident, plain-spoken. (Spelling and conventions follow the **Language variant** in Style choices below — UK English by default.)
 
 ## Voice attributes
 
@@ -32,6 +32,7 @@
 
 ## Style choices
 
+- **Language variant:** [UK / US / Australian / Canadian English] (default: UK English) — sets which spelling and conventions the proofreader enforces; an explicit request in chat overrides this
 - **Person:** [e.g. "we" for the brand, "you" for the reader] (default: we/you)
 - **Contractions:** [yes/no] (default: yes — we're, don't, it's)
 - **Humour:** [none / light / playful] (default: light)

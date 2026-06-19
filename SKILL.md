@@ -2,13 +2,14 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.3.3
+  version: 1.4.0
   date: 2026-06-19
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
-  Proofread and improve the written content of a website or web page: UK-English
-  spelling and grammar, AI-ism detection and removal, and on-page SEO of the copy.
+  Proofread and improve the written content of a website or web page: spelling and
+  grammar (UK English by default; configurable), AI-ism detection and removal, and
+  on-page SEO of the copy.
   Trigger when the user wants the WORDING of website copy proofread, copy-edited,
   or SEO-reviewed — landing pages, blog posts, product/marketing pages, meta
   descriptions, or other page text they paste, upload, or point to by page URL,
@@ -23,7 +24,7 @@ description: |
 
 # Website Proofreader
 
-Proofread website content against the brand's tone of voice, UK English conventions, AI-writing-pattern rules, and current on-page SEO best practices. Return either polished copy with a change log or an annotated report, depending on what the user chooses each run.
+Proofread website content against the brand's tone of voice, the active English variant's conventions (UK English by default), AI-writing-pattern rules, and current on-page SEO best practices. Return either polished copy with a change log or an annotated report, depending on what the user chooses each run.
 
 ## Workflow
 
@@ -34,7 +35,7 @@ Follow these steps in order: identify the content first, then ask all applicable
 Read all four reference files before analysing anything:
 
 1. `references/tone-of-voice.md` — brand vocabulary, voice, and banned words
-2. `references/proofing-rules-checklist.md` — spelling, grammar, and consistency rules (UK English)
+2. `references/proofing-rules-checklist.md` — spelling, grammar, and consistency rules (variant-aware; UK English by default)
 3. `references/ai-isms.md` — AI-generated-writing patterns to detect and remove
 4. `references/seo-checklist.md` — on-page SEO checks, organised by depth level
 
@@ -94,8 +95,10 @@ When the content comes from fetched URLs (sources a–d), recommend the annotate
 
 If a target keyword or topic is needed for SEO checks and hasn't been given, ask for it in the same batch (or infer it from the content and state your assumption).
 
+**Language variant (state it, don't ask):** Resolve which English variant to proofread in by this priority — an explicit instruction in the user's request (e.g. "proofread in US English") → the **Language variant** set in `tone-of-voice.md` → **UK English** (the default). This is **not** a setup question: don't add it to the batch. Instead, state the active variant in one line alongside the setup (e.g. "Proofing in UK English — tell me if you'd prefer US, Australian, Canadian, etc.") and switch if the user asks. The chosen variant governs the spelling and conventions enforced in the proofing pass (Step 4). The model can apply any named variant; UK, US, Australian, and Canadian English are the expected ones.
+
 **Severity tiers** (used by the report level setting):
-- **Error** — objectively wrong: misspellings, US spellings, grammar mistakes, broken/placeholder links, missing required SEO elements (e.g. no title tag, no H1)
+- **Error** — objectively wrong: misspellings, spellings that don't match the active variant (e.g. US spellings when UK English is active), grammar mistakes, broken/placeholder links, missing required SEO elements (e.g. no title tag, no H1)
 - **Warning** — very likely should change: AI-ism patterns, inconsistencies (spelling variants, capitalisation, dash style, link formats), weak/duplicate SEO elements, readability problems
 - **General comment** — style observations and optional improvements: tone suggestions, structure ideas, things worth a human judgement call
 
@@ -105,7 +108,7 @@ The reference checklists tag their sections with these default severities — us
 
 Run only the passes the chosen mode includes (proofreader-only: passes 1–2; SEO-only: pass 3; both: all). Work through the content in this order, noting every issue with its location (quote a short snippet so the user can find it):
 
-1. **Proofing pass** — apply `proofing-rules-checklist.md`. UK English spelling and conventions are mandatory; flag every US spelling.
+1. **Proofing pass** — apply `proofing-rules-checklist.md` in the active English variant (resolved in Step 3; UK English by default). Spelling and conventions for that variant are mandatory; flag every deviation (e.g. US spellings when UK English is active). Never flag a spelling or convention that is correct in the active variant.
 2. **AI-ism pass** — apply `ai-isms.md`. Flag patterns, don't just reword silently; the user wants to learn what to avoid.
 3. **SEO pass** — apply `seo-checklist.md` at the depth chosen in Step 3 only. Do not run full-audit checks if the user chose basics.
 

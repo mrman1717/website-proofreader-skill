@@ -1,12 +1,14 @@
-# Proofing Rules Checklist (UK English)
+# Proofing Rules Checklist
 
 Apply every rule below. Quote the offending snippet when flagging an issue.
 
+**Active English variant.** These rules enforce the **active English variant**, resolved as: an explicit instruction in the request → the **Language variant** set in `tone-of-voice.md` → **UK English** (the default). The spelling and conventions below are written for UK English as the worked example; when another variant is active (US, Australian, Canadian, …), apply *that* variant's equivalents and flag deviations from it instead. Never flag a spelling or convention that is correct in the active variant — e.g. don't flag "color" or "June 10, 2026" when US English is active.
+
 Each section carries a **default severity** (error / warning / comment) used by the report level setting. Adjust by judgement where a specific instance is clearly more or less serious, and note exceptions marked within a section.
 
-## 1. UK English spelling — mandatory _(default severity: error)_
+## 1. Spelling — enforce the active variant, mandatory _(default severity: error)_
 
-Flag and correct all US spellings, including:
+For the **UK English** default, flag and correct all US spellings, using the mappings below. When a different variant is active, flip the rule: enforce that variant's spellings and flag anything that doesn't match it (e.g. under US English, "colour" → "color", "organise" → "organize"; Canadian English commonly takes "-ize" endings but keeps "-our" spellings like "colour"). The UK→US mappings:
 
 - -ize/-ization → -ise/-isation (organise, optimisation, realise)
 - -or → -our (colour, behaviour, favour)
@@ -18,7 +20,9 @@ Flag and correct all US spellings, including:
 - check → cheque (payments), gray → grey, tire → tyre, aluminum → aluminium
 - Verb/noun pairs: practise (verb) / practice (noun); license (verb) / licence (noun); advise (verb) / advice (noun)
 
-## 2. UK conventions _(default severity: error; the en dash rule below sets its own)_
+## 2. Conventions — enforce the active variant _(default severity: error; the en dash rule below sets its own)_
+
+The conventions below are the **UK English** defaults. When another variant is active, apply its equivalents instead of flagging them — most notably under **US English**: dates as "June 10, 2026"; double quotation marks as primary; commas and full stops *inside* the closing quotation mark; `$` currency; "-ize" spellings; "while" not "whilst". Australian and Canadian English largely follow the UK conventions below (Canadian often takes "-ize" endings and may use US-style figures). UK English defaults:
 
 - Dates: 10 June 2026, not June 10, 2026
 - Punctuation outside quotation marks unless part of the quote

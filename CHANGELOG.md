@@ -4,6 +4,17 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.4.0] — 2026-06-19
+
+### Added
+- Configurable English variant. The proofreader is no longer hard-wired to UK English: it resolves which variant to use as explicit request in chat → the **Language variant** set in `tone-of-voice.md` → **UK English** (unchanged default). UK, US, Australian, and Canadian English are the expected variants, and any variant named in the request is honoured. It states the active variant in one line rather than adding a setup question, and switches on request.
+
+### Changed
+- `references/proofing-rules-checklist.md`: Section 1 (spelling) and Section 2 (conventions) are now variant-aware — UK English remains the worked example/default, with the US/AU/CA equivalents noted (dates, quotation marks, currency, "-ize" spellings, etc.). The pass no longer flags spellings or conventions that are correct in the active variant.
+- `references/tone-of-voice.md`: added a **Language variant** style setting (default UK English); the default-voice line no longer hard-codes "British English".
+- SKILL.md: pass 1, the severity-tier example, the intro, and the trigger description now reference the active variant instead of hard-coded UK English; Step 3 documents how the variant is resolved and announced (stated, not asked).
+- README.md: documents the UK-English default and how to change it.
+
 ## [1.3.3] — 2026-06-19
 
 ### Fixed

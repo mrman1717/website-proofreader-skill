@@ -2,7 +2,7 @@
 
 Proofreads website content in three passes:
 
-1. **Spelling & grammar** — UK English enforced, plus consistency and web-specific checks
+1. **Spelling & grammar** — your chosen English variant enforced (UK English by default), plus consistency and web-specific checks
 2. **AI-isms** — detects and removes overused AI words, phrases, and formulaic structures
 3. **On-page SEO** — checks against current (2026) best practices, including AI-search visibility
 
@@ -16,6 +16,8 @@ Proofreads website content in three passes:
 - A target keyword, if one isn't obvious
 
 All applicable questions are asked together in one batch after the content is identified; questions that don't apply to your chosen mode or content source are skipped. Issues are graded error / warning / comment, so you can filter the report to just what matters.
+
+**Language variant.** It proofreads in **UK English by default** — this isn't a per-run question. To change it, set a different **Language variant** (UK / US / Australian / Canadian) in your `tone-of-voice.md`, or just say so in chat (e.g. *"proofread this in US English"*). It states which variant it's using at the start of each run.
 
 ## How to use it
 
