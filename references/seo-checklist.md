@@ -24,6 +24,7 @@ You need a **target keyword/topic**. If not given, infer it from the content, st
 **Links**
 - Descriptive anchor text — never "click here" / "read more" alone
 - Internal links to relevant pages where natural
+- Internal links point to the site's canonical host and protocol (the www-or-non-www and https version the site redirects to), so a click doesn't incur a needless redirect hop or split link equity. This lives in the `href`, not the anchor text, so it can only be checked against the raw markup — not rendered text. When flagging, quote each offending link by its actual anchor text and real URL and name the page it's on; give the true count and list the instances, never "many"
 - At least a couple of external links to credible, relevant sources where the content makes claims
 - No broken/placeholder links
 - Email addresses deliberately obfuscated against spam (JavaScript cloaking, HTML-entity encoding, or "protected from spambots"-style markers — standard in Joomla and many other CMSs) are an **intentional anti-spam choice, not an error or warning**. Don't tell the user to "fix" a deliberate measure. Note it at most as a general comment, and only when there's no accessible contact fallback (a contact form or page) — present the spam-vs-findability tradeoff neutrally.
@@ -77,6 +78,8 @@ You need a **target keyword/topic**. If not given, infer it from the content, st
 ## Reporting
 
 For every SEO issue: state what's wrong, why it matters (one line), and the specific fix — ideally with rewritten example text (e.g. propose the actual improved title tag, not "improve the title").
+
+Quote every example **verbatim** from the page and cite its exact location (page URL, and the section or element) — never invent an illustrative snippet or describe a link by a guessed label. For a recurring or site-wide issue, list the actual affected instances with a true count and the page each is on, not a vague "many".
 
 ## Sources
 

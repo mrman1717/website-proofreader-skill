@@ -4,6 +4,19 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.5.0] — 2026-07-08
+
+### Fixed
+- Reporting accuracy / fabricated examples: when flagging an issue the skill was inventing plausible-sounding examples instead of quoting the real text — e.g. attributing inconsistent internal-link domains to "Get started" / "More about us" CTAs that weren't the actual offenders. It now must quote the offending text **verbatim** (real anchor text and real destination URL), cite the specific page, and for a recurring/site-wide issue give the true count and list the actual instances rather than a vague "many". A new principle in SKILL.md bans fabricating evidence outright.
+- Link-destination blind spot: a link's target lives in its `href`, which is stripped from rendered/fetched text (only the anchor text survives). The skill was guessing where links pointed. It now treats link-destination checks — where a link goes, and www/protocol/trailing-slash consistency — as raw-markup-only, and says the check needs the page source instead of asserting a destination it can't see.
+
+### Added
+- SEO checklist (Level 1 — Links): internal-link canonical-host check — internal links should point to the site's canonical host and protocol (the www-or-non-www, https version the site redirects to) to avoid a needless redirect hop and split link equity. Previously the www/non-www consistency check lived only in the proofing checklist, so an SEO-only run had nothing grounding it.
+
+### Changed
+- SKILL.md: Step 2 adds link `href` values to the raw-markup items and notes rendered text hides them; Step 4 requires verbatim quoting, real per-page locations, and enumerated instances (no "many"); seo-checklist.md Reporting adds the same verbatim/location/enumeration requirement.
+- proofing-rules-checklist.md: the visible-URL-consistency check now requires quoting the real anchor text + destination URL + page and a true count, and notes destinations are only visible in the raw markup.
+
 ## [1.4.0] — 2026-06-19
 
 ### Added

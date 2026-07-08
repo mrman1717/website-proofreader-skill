@@ -2,8 +2,8 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.4.0
-  date: 2026-06-19
+  version: 1.5.0
+  date: 2026-07-08
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
@@ -63,7 +63,7 @@ The user can supply content in any of these ways. Identify which applies before 
 
 **Fetch failures:** never silently skip a page. If a URL can't be fetched or returns no usable text (blocked request, 403/404, robots.txt disallow, cookie/consent wall, or a JavaScript-rendered page with empty HTML), list it in the output as "could not check", say why, and suggest the fallback: paste the copy or upload the page as a file. If every URL fails, stop and ask for the content another way rather than guessing.
 
-For HTML (fetched or uploaded), analyse the rendered text but also check the raw markup where available: title tag, meta description, heading hierarchy, image alt attributes, and structured data (`<script type="application/ld+json">` blocks). Note that fetched pages are often reduced to rendered text, which strips `<script>` JSON-LD and other head markup — so the absence of structured data can't be assumed from rendered text alone (see the structured-data note in seo-checklist.md).
+For HTML (fetched or uploaded), analyse the rendered text but also check the raw markup where available: title tag, meta description, heading hierarchy, image alt attributes, link destinations (`href` values), and structured data (`<script type="application/ld+json">` blocks). Note that fetched pages are often reduced to rendered text, which strips `<script>` JSON-LD and other head markup, and shows only a link's visible **anchor text — not the URL it points to**. So link-destination checks (where a link actually goes, and www/protocol/trailing-slash consistency) can only be judged from the raw markup: with rendered text alone you can see the anchor text but not the `href`, so never assert where a link points — say the check needs the page source. Likewise the absence of structured data can't be assumed from rendered text alone (see the structured-data note in seo-checklist.md).
 
 ### Step 3: Ask the setup questions
 
@@ -106,7 +106,7 @@ The reference checklists tag their sections with these default severities — us
 
 ### Step 4: Run the passes for the chosen mode
 
-Run only the passes the chosen mode includes (proofreader-only: passes 1–2; SEO-only: pass 3; both: all). Work through the content in this order, noting every issue with its location (quote a short snippet so the user can find it):
+Run only the passes the chosen mode includes (proofreader-only: passes 1–2; SEO-only: pass 3; both: all). Work through the content in this order, noting every issue with its location. **Quote the offending text verbatim** — copy it exactly from the source; never paraphrase it, summarise it, or invent a plausible-sounding example (e.g. don't call a link a "Get started" or "More about us" CTA unless those are its actual words). Give enough location to find each issue: on multi-page jobs, the page URL (plus a section or heading where it helps). For a recurring or site-wide issue, don't write vague quantifiers like "many pages" or "several CTAs" — give the true count and list the actual instances, each with its real text and the page it's on, up to a reasonable cap (say if more were truncated):
 
 1. **Proofing pass** — apply `proofing-rules-checklist.md` in the active English variant (resolved in Step 3; UK English by default). Spelling and conventions for that variant are mandatory; flag every deviation (e.g. US spellings when UK English is active). Never flag a spelling or convention that is correct in the active variant.
 2. **AI-ism pass** — apply `ai-isms.md`. Flag patterns, don't just reword silently; the user wants to learn what to avoid.
@@ -161,5 +161,6 @@ For long content (over ~1,500 words, or any multi-page job), save the output as 
 - Preserve the author's meaning and structure. Fix problems; don't rewrite for the sake of it.
 - The tone-of-voice file wins over generic style preferences. If it conflicts with an AI-ism rule, follow the tone file and note the conflict.
 - Be specific in the change log — vague entries like "improved flow" are useless. Name the rule applied.
+- Never fabricate evidence. Every snippet, anchor text, URL, heading, or label you quote must appear **verbatim** in the source — don't invent an illustrative example, guess a link's wording from its likely purpose, or attribute an issue to text that isn't there. If you can describe a pattern but can't point to a real instance (e.g. you have rendered text but not the `href`), say exactly that rather than manufacturing one.
 - If the content is clean in a category, say so briefly rather than inventing issues.
 - When the brand tone-of-voice file still contains template placeholders, mention that filling it in will improve results, then proceed with sensible defaults.

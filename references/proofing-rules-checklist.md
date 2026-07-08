@@ -57,7 +57,7 @@ The conventions below are the **UK English** defaults. When another variant is a
 - Missing or duplicated headings; heading text that doesn't match the section content
 - Phone numbers, emails, addresses formatted consistently
 - Trademark/brand names spelt as the owner spells them (e.g. WordPress, iPhone, LinkedIn)
-- Visible URL consistency: all either include or omit "www", and all either include or omit trailing slashes — flag mixed styles as an inconsistency (applies to URLs shown in the copy and link destinations where visible)
+- Visible URL consistency: all either include or omit "www", and all either include or omit trailing slashes — flag mixed styles as an inconsistency (applies to URLs shown in the copy and to link destinations). A link's destination lives in its `href`, not its visible text, so this needs the raw markup: with rendered text alone you can see the anchor text but not where the link points — say the check needs the page source rather than guessing. When flagging, quote each offending link by its **actual anchor text and its real destination URL**, and name the page it's on; give the true count and list the instances rather than writing "many"
 
 ## 6. Clarity and concision _(default severity: comment)_
 
