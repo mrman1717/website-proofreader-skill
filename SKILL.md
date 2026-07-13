@@ -2,8 +2,8 @@
 name: website-proofreader
 license: MIT
 metadata:
-  version: 1.5.0
-  date: 2026-07-08
+  version: 1.6.0
+  date: 2026-07-09
   author: mrman1717
   repository: https://github.com/mrman1717/website-proofreader-skill
 description: |
@@ -28,7 +28,9 @@ Proofread website content against the brand's tone of voice, the active English 
 
 ## Workflow
 
-Follow these steps in order: identify the content first, then ask all applicable setup questions in one batch (Step 3) so the user answers everything in a single round-trip. Never silently assume answers to Questions 1–3 — the user wants to choose these each run unless they've already said so in their request.
+At the very start of the run, before anything else, state which version of the skill is running in one short line — read the `version` field from this file's frontmatter `metadata` block (e.g. "Running Website Proofreader v<version>."). Always report the version from the file actually executing, so the user can tell whether the active copy is current (installed and packaged copies can lag the repo). Don't hard-code the number anywhere else — the frontmatter `metadata` is its single source.
+
+Then follow these steps in order: identify the content first, then ask all applicable setup questions in one batch (Step 3) so the user answers everything in a single round-trip. Never silently assume answers to Questions 1–3 — the user wants to choose these each run unless they've already said so in their request.
 
 ### Step 1: Load the reference files
 

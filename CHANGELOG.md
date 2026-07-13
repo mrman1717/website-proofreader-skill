@@ -4,6 +4,11 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.6.0] — 2026-07-09
+
+### Added
+- Version announcement on start: the skill now states which version is running (read from SKILL.md's frontmatter `metadata`) as the first line of every run, so it's clear which copy is active — useful because installed and packaged copies can silently lag the repo. The number is not hard-coded in the workflow text; the frontmatter remains its single source.
+
 ## [1.5.0] — 2026-07-08
 
 ### Fixed
