@@ -4,6 +4,11 @@ All notable changes to the website-proofreader skill are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/) principles; versioning follows [Semantic Versioning](https://semver.org/).
 The authoritative version number and date live in the `metadata` block of SKILL.md.
 
+## [1.6.2] — 2026-07-14
+
+### Security
+- SSRF, redirect, and cross-origin crawl protections. SKILL.md adds one fail-closed URL-safety policy that must pass before *every* fetch — the starting URL, `robots.txt`, `sitemap.xml`, sitemap indexes and every URL they list, internal links, canonical targets, and each redirect hop and final URL. A destination is fetched only if it uses `http`/`https`, carries no embedded credentials, stays on the starting site's registrable domain (eTLD+1 via Public Suffix List rules, not string matching; `www`/apex and same-domain subdomains allowed), resolves to a public host — rejecting `localhost`, bare hostnames, and loopback/private/link-local/multicast/reserved/CGNAT/documentation/benchmarking/cloud-metadata addresses for both IPv4 and IPv6, including obfuscated numeric and IPv4-mapped-IPv6 forms — and uses a standard web port. Discovered links, sitemaps, canonicals, and redirects can no longer expand the crawl to another registrable domain or a non-public address; validation is always before the fetch, never after. Where a fetch tool hides redirects or DNS, the skill relies on the tool's built-in network-safety controls (never bypassing them) and fails closed — marking the destination "could not check" — when safety can't be established. Blocked URLs get a concise, non-sensitive reason (no leaked IPs, credentials, or tokens) and the paste/upload fallback; there is no bypass for private/local sites. Ordinary public same-site crawling is unchanged.
+
 ## [1.6.1] — 2026-07-13
 
 ### Security
